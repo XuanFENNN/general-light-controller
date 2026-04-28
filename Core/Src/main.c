@@ -126,7 +126,7 @@ int main(void)
 
     num1++;
     float ADCVerf = ADC_verf(values[0]);
-    float DL = DL_value(ADCVerf, values[1]);
+    float DL = dl_value(ADCVerf, values[1]);
     float LEDP = DL * 5.0f;
     float mb_temp = resistance2Temperature(ADC2Resistance(values[2]));
     led_temp = resistance2Temperature(ADC2Resistance(values[3]));

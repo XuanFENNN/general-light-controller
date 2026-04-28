@@ -25,7 +25,7 @@ float resistance2Temperature(const float R) {
     return T0 * B / (B + T0 * logf(R / R0)) - 273.15f;
 }
 
-float DL_value(const float Verf, const uint16_t ADCvalue) {
+float dl_value(const float Verf, const uint16_t ADCvalue) {
     return (2.45f - Verf / 4095.0f * (float)ADCvalue) / 0.4f;
 }
 
