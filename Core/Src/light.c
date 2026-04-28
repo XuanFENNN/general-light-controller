@@ -8,6 +8,7 @@
 TIM_HandleTypeDef LEDTIM;
 uint32_t LEDCH;
 int Max_ZKB = 99;
+//int WeightCot = 5;
 
 float ADC_verf(const float VerfValue) {
     return 1.2f * 4095.0f / VerfValue;
@@ -73,11 +74,11 @@ int LED_TempCtrl(const float temp) {
         t = 6.6f * i;
     }
 
-    value = (t - 32) / 50.0f; // 计算补偿比例
+    value = (t - 32) / 100.0f; // 计算补偿比例
     if (value < 0.0f) {
         value = 0.0f; // 防止value为负
     }
-    t = t + value; // 在温度低于60时对占空比进行补偿以压榨散热潜力
+    t = t + value * (float)WeightCot; // 在温度低于60时对占空比进行补偿以压榨散热潜力
 
     if (count >= 5) {
         sum -= buffer[index];

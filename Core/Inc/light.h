@@ -5,7 +5,9 @@
 #ifndef LIGHT_H
 #define LIGHT_H
 #include "main.h"
+#include <string.h>
 
+extern int WeightCot;
 
 float ADC_verf(float VerfValue);
 float ADC2Resistance(float adc_value);

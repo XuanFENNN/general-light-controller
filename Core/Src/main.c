@@ -54,7 +54,7 @@ uint16_t values[4];
 char message[255] = "";
 
 int num1 = 0;
-
+int WeightCot = 50;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -131,7 +131,7 @@ int main(void)
     float mb_temp = resistance2Temperature(ADC2Resistance(values[2]));
     led_temp = resistance2Temperature(ADC2Resistance(values[3]));
     int mzkb = LED_TempCtrl(led_temp);
-    if (num1 == 25) {
+    if (num1 == 100) {
       sprintf(message, "参考电压: %.3f V  电流: %.2f A  功率:%.2f W  主板温度:%.2f˚C  灯板温度:%.2f˚C  最大占空比:%d", ADCVerf, DL, LEDP, mb_temp, led_temp, mzkb);
       HAL_UART_Transmit_DMA(&huart1, (uint8_t*)message, strlen(message));
       num1 = 0;
