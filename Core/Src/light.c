@@ -33,6 +33,7 @@ float dl_value(const float Verf, const uint16_t ADCvalue) {
 void light_init(const TIM_HandleTypeDef ledtim, const uint32_t ledch) {
     LEDTIM = ledtim;
     LEDCH = ledch;
+    HAL_TIM_PWM_Start(&LEDTIM, LEDCH);
     __HAL_TIM_SET_COMPARE(&LEDTIM, LEDCH, 0);
 }
 

@@ -98,16 +98,15 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_ADC1_Init();
-  MX_I2C1_Init();
-  MX_USART1_UART_Init();
   MX_TIM4_Init();
+  MX_USART3_UART_Init();
+  MX_I2C1_Init();
+  MX_TIM1_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 
   HAL_ADCEx_Calibration_Start(&hadc1);
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*)values, 4);
-
-  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
 
   light_init(htim4, TIM_CHANNEL_4);
 
@@ -133,7 +132,7 @@ int main(void)
     int mzkb = LED_TempCtrl(led_temp);
     if (num1 == 100) {
       sprintf(message, "参考电压: %.3f V  电流: %.2f A  功率:%.2f W  主板温度:%.2f˚C  灯板温度:%.2f˚C  最大占空比:%d", ADCVerf, DL, LEDP, mb_temp, led_temp, mzkb);
-      HAL_UART_Transmit_DMA(&huart1, (uint8_t*)message, strlen(message));
+      HAL_UART_Transmit_DMA(&huart3, (uint8_t*)message, strlen(message));
       num1 = 0;
     }
 
