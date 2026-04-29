@@ -10,6 +10,7 @@ uint32_t RGBCH;
 void ws2812_init(const TIM_HandleTypeDef rgbTIM, const uint32_t rgbCH) {
     RGBTIM = rgbTIM;
     RGBCH = rgbCH;
+    HAL_TIM_PWM_Start(&RGBTIM, RGBCH);
     __HAL_TIM_SET_COMPARE(&RGBTIM, RGBCH, 0);
 }
 
