@@ -28,6 +28,11 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
+#include <string.h>
+
+#include "at24c02.h"
+#include "../Inc/light.h"
 
 /* USER CODE END Includes */
 
@@ -38,7 +43,6 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -49,13 +53,16 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+uint16_t values[4];
+char message[255] = "";
 
+int num1 = 0;
+int WeightCot = 50;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -102,15 +109,44 @@ int main(void)
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
 
+  HAL_ADCEx_Calibration_Start(&hadc1);
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t*)values, 4);
+
+  light_init(htim2, TIM_CHANNEL_1);
+  EEPROM_Init(&hi2c1, EEP_WP_GPIO_Port, EEP_WP_Pin);
+
+  LEDCompare(1);
+  EEPROM_WriteProtect(0);
+  float led_temp = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  // ReSharper disable once CppDFAEndlessLoop
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+    num1++;
+    float ADCVerf = ADC_verf(values[0]);
+    float DL = dl_value(ADCVerf, values[1]);
+    float LEDP = DL * 5.0f;
+    float mb_temp = resistance2Temperature(ADC2Resistance(values[2]));
+    led_temp = resistance2Temperature(ADC2Resistance(values[3]));
+    int mzkb = LED_TempCtrl(led_temp);
+    if (num1 == 100) {
+      sprintf(message, "参考电压: %.3f V  电流: %.2f A  功率:%.2f W  主板温度:%.2f˚C  灯板温度:%.2f˚C  最大占空比:%d", ADCVerf, DL, LEDP, mb_temp, led_temp, mzkb);
+      HAL_UART_Transmit_DMA(&huart3, (uint8_t*)message, strlen(message));
+      num1 = 0;
+    }
+
+    HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+    HAL_Delay(10);
+
+    //LED_Breath(2);
+    LEDCompare(100);
   }
   /* USER CODE END 3 */
 }
@@ -172,15 +208,15 @@ void SystemClock_Config(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-    /* User can add his own implementation to report the HAL error return state */
-    __disable_irq();
-    // ReSharper disable once CppDFAEndlessLoop
-    while (1)
-    {
-        // 错误时LED常亮（新增：错误状态指示）
-        HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-        HAL_Delay(100);
-    }
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  // ReSharper disable once CppDFAEndlessLoop
+  while (1)
+  {
+    // 错误时LED常亮（新增：错误状态指示）
+    HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+    HAL_Delay(100);
+  }
   /* USER CODE END Error_Handler_Debug */
 }
 
