@@ -146,7 +146,7 @@ int main(void)
     HAL_Delay(10);
 
     //LED_Breath(2);
-    LEDCompare(100);
+    LEDCompare(0);
   }
   /* USER CODE END 3 */
 }

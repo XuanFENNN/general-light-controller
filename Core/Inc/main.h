@@ -69,8 +69,6 @@ void Error_Handler(void);
 #define VUSB_GPIO_Port GPIOA
 #define VBAT_Pin GPIO_PIN_4
 #define VBAT_GPIO_Port GPIOA
-#define FAN_SLEEP_Pin GPIO_PIN_2
-#define FAN_SLEEP_GPIO_Port GPIOB
 #define SPI2_CS_Pin GPIO_PIN_12
 #define SPI2_CS_GPIO_Port GPIOB
 #define SPI2_WP_Pin GPIO_PIN_8
@@ -81,10 +79,12 @@ void Error_Handler(void);
 #define FAN1_GPIO_Port GPIOA
 #define FAN2_Pin GPIO_PIN_11
 #define FAN2_GPIO_Port GPIOA
-#define KEY_Pin GPIO_PIN_12
-#define KEY_GPIO_Port GPIOA
+#define FAN_SLEEP_Pin GPIO_PIN_12
+#define FAN_SLEEP_GPIO_Port GPIOA
 #define LEDOUT_Pin GPIO_PIN_15
 #define LEDOUT_GPIO_Port GPIOA
+#define KEY_Pin GPIO_PIN_3
+#define KEY_GPIO_Port GPIOB
 #define K1_Pin GPIO_PIN_6
 #define K1_GPIO_Port GPIOB
 #define K2_Pin GPIO_PIN_7
