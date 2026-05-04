@@ -40,7 +40,11 @@ add_executable(${CMAKE_PROJECT_NAME}
         Core/Inc/light.h
         Core/Src/ws2812.c
         Core/Inc/ws2812.h
-        Core/Src/at24c02.c)
+        Core/Src/at24c02.c
+        Core/Src/spi_flash.c
+        Core/Inc/spi_flash.h
+        Core/Src/drv8837.c
+        Core/Inc/drv8837.h)
 
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
