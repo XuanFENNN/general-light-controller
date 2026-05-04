@@ -38,8 +38,6 @@ enable_language(C ASM)
 add_executable(${CMAKE_PROJECT_NAME}
         Core/Src/light.c
         Core/Inc/light.h
-        Core/Src/ws2812.c
-        Core/Inc/ws2812.h
         Core/Src/at24c02.c
         Core/Src/spi_flash.c
         Core/Inc/spi_flash.h
