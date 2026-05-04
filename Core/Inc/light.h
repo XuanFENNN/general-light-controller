@@ -4,7 +4,7 @@
 
 #ifndef LIGHT_H
 #define LIGHT_H
-#include "main.h"
+#include "main1.h"
 #include <string.h>
 
 extern int WeightCot;

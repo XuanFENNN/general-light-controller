@@ -59,35 +59,36 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define LED_Pin GPIO_PIN_13
 #define LED_GPIO_Port GPIOC
-#define DLT_Pin GPIO_PIN_0
-#define DLT_GPIO_Port GPIOA
+#define BATT_Pin GPIO_PIN_0
+#define BATT_GPIO_Port GPIOA
 #define MBT_Pin GPIO_PIN_1
 #define MBT_GPIO_Port GPIOA
 #define LEDT_Pin GPIO_PIN_2
 #define LEDT_GPIO_Port GPIOA
+#define VUSB_Pin GPIO_PIN_3
+#define VUSB_GPIO_Port GPIOA
+#define VBAT_Pin GPIO_PIN_4
+#define VBAT_GPIO_Port GPIOA
+#define FAN_SLEEP_Pin GPIO_PIN_2
+#define FAN_SLEEP_GPIO_Port GPIOB
 #define SPI2_CS_Pin GPIO_PIN_12
 #define SPI2_CS_GPIO_Port GPIOB
 #define SPI2_WP_Pin GPIO_PIN_8
 #define SPI2_WP_GPIO_Port GPIOA
 #define EEP_WP_Pin GPIO_PIN_9
 #define EEP_WP_GPIO_Port GPIOA
-#define BTN1_Pin GPIO_PIN_10
-#define BTN1_GPIO_Port GPIOA
-#define BTN1_EXTI_IRQn EXTI15_10_IRQn
-#define BTN2_Pin GPIO_PIN_11
-#define BTN2_GPIO_Port GPIOA
-#define BTN2_EXTI_IRQn EXTI15_10_IRQn
-#define BTN3_Pin GPIO_PIN_12
-#define BTN3_GPIO_Port GPIOA
-#define BTN3_EXTI_IRQn EXTI15_10_IRQn
+#define FAN1_Pin GPIO_PIN_10
+#define FAN1_GPIO_Port GPIOA
+#define FAN2_Pin GPIO_PIN_11
+#define FAN2_GPIO_Port GPIOA
+#define KEY_Pin GPIO_PIN_12
+#define KEY_GPIO_Port GPIOA
 #define LEDOUT_Pin GPIO_PIN_15
 #define LEDOUT_GPIO_Port GPIOA
-#define FAN_SLEEP_Pin GPIO_PIN_3
-#define FAN_SLEEP_GPIO_Port GPIOB
-#define FAN1_Pin GPIO_PIN_4
-#define FAN1_GPIO_Port GPIOB
-#define FAN2_Pin GPIO_PIN_5
-#define FAN2_GPIO_Port GPIOB
+#define K1_Pin GPIO_PIN_6
+#define K1_GPIO_Port GPIOB
+#define K2_Pin GPIO_PIN_7
+#define K2_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
